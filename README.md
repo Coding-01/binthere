@@ -196,6 +196,15 @@ npm run deploy           # creates the Worker, Durable Object, and rate limiter
   carries a small perpetual cost under SQLite-backed DO storage billing. If you expose
   `never` to third-party clients, decide whether to cap it or accept the standing cost.
 
+- Recorded at 16:01 on August 9, 2026
+
+  When deploying on Cloudfare using workers, I pulled the code directly from GitHub, created a key-value pair named PASTES and bound it to the worker, then modified the following information in wrangler.toml:
+
+  [[kv_namespaces]]
+  binding = "PASTES"
+  id = "e9e.....4"                   # KV ID
+  preview_id = "e9e.....4"     # Optional
+
 </details>
 
 ## Architecture
