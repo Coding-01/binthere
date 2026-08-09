@@ -183,13 +183,17 @@ npm run deploy           # creates the Worker, Durable Object, and rate limiter
 
 - Replace the KV `id` / `preview_id` in `wrangler.toml` with your own (a pristine template is
   in [`wrangler.toml.example`](./wrangler.toml.example)).
+  
 - Update the hardcoded canonical URLs: `og:url` / `og:image` in `public/index.html` and
   `Canonical` in `public/.well-known/security.txt` point at `binthere.gaury.dev`; the
   footer and `security.txt` `Policy` point at `github.com/nxfu/binthere`.
+  
 - The link-preview card `public/opengraph.png` also has that domain printed on it. Edit
   [`tools/opengraph.html`](./tools/opengraph.html) and re-render with `node tools/render-og.mjs`
   (needs a local Chrome/Chromium; pass `--browser <path>` or set `$CHROME` if it isn't found).
+  
 - `npm run dev` works with placeholder KV ids — KV is emulated locally.
+
 - **Cost note on `never` expiry:** the official clients always create 24-hour one-time
   notes, but the wire format (and the API) accepts `expire: "never"`. Such a paste is
   stored with no KV TTL and no Durable Object alarm — an unread burn note kept forever
@@ -201,8 +205,11 @@ npm run deploy           # creates the Worker, Durable Object, and rate limiter
   When deploying on Cloudfare using workers, I pulled the code directly from GitHub, created a key-value pair named PASTES and bound it to the worker, then modified the following information in wrangler.toml:
 
   [[kv_namespaces]]
+  
   binding = "PASTES"
+  
   id = "e9e.....4"                   # KV ID
+  
   preview_id = "e9e.....4"     # Optional
 
 </details>
